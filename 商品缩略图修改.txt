@@ -1,0 +1,63 @@
+商品缩略图修改
+上传《》
+原来1.jpg 删除
+原来2.jpg 删除
+原来3.jpg 删除
+原来4.jpg 删除
+
+新1.jpg
+情况1：原来的进行了删除，{新的没有添加}。提交或(不提交)
+情况2：原来的进行了删除，{同时添加了新的}。提交或(不提交)
+情况3：{原来的没变}，{同时添加了新的}。提交或(不提交)。
+情况4：{原来的没变}，{新的没变}。提交或(不提交)。
+
+
+旧删除，新一直不动，提交：T
+旧删除，新最终不动，提交：T
+旧删除，新一直不动，不提交：T
+旧删除，新最终不动，不提交：T
+
+旧删除，新一口气添加，提交：T
+旧删除，新最终添加，  提交：T
+旧删除，新一口气添加，不提交：T
+旧删除，新最终添加，  不提交：T
+
+旧不动，新一口气添加，提交:T
+旧不动，新最终添加，提交:T
+旧不动，新一口气添加，不提交:T
+旧不动，新最终添加，不提交:T
+
+旧不动，新不动，提交:T
+旧不动，新最终不动,提交:T
+upd($goods_id){
+	unset($_SESSION['imgload']);
+	unset(所有细节图session)
+	原来的图片信息临时存起来
+	$_SESSION['yuanlai'][] = array(0,1,2);
+	$_SESSION['imgupload'][0]='1'//提交的时候判断1，不做
+	$_SESSION['imgupload'][1]='-1'
+	//提交的时候判断-1，1，将图片删除掉。2，对应的session信息也要删除掉。3，数据库信息也要删掉
+	$_SESSION['imgupload'][2]='1'
+	//以上为旧图片
+	$_SESSION['imgupload'][3]
+	$_SESSION['imgupload'][4]=''
+
+}
+imgupload{
+	$_SESSION['imgupload'][4]=
+}
+imgcancle{
+	判断if($_SESSION['imgupload'])=1,置1为-1，
+	//$_SESSION['linshi'][index] = $_SESSION['yuanlai']['index']
+	$_SESSION['imgupload'][4]=
+
+}
+updhanddle{
+	$_SESSION['imgupload'] = 1;//表明是旧的图片且没有删除，不执行操作
+	$_SESSION['imgupload'] = 'url'//表明是新的图片，写入数据库，并建立一对多关系
+	$_SESSION['imgupload'][1] = -1//表明是旧图片且进行了删除操作，
+	//1，将图片删除掉。2，数据库信息也要删掉
+	$_SESSION['yuanlai'][1]='url'
+	清除所有的session信息
+
+}

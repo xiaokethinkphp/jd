@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+		<meta name="description" content="JS代码网提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="__ADMIN__/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__ADMIN__/assets/css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="__ADMIN__/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="__ADMIN__/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="__ADMIN__/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="__ADMIN__/assets/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="__ADMIN__/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="__ADMIN__/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="__ADMIN__/assets/js/html5shiv.js"></script>
+		<script src="__ADMIN__/assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<!-- navbar -->
+		{include file="public/navbar"}
+		<!-- /navbar -->
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<!-- sidebar -->
+				{include file="public/sidebar"}
+				<!-- /sidebar -->
+
+				<div class="main-content">
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								订单管理
+								<small>
+									<i class="icon-double-angle-right"></i>
+									订单详情
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+									<div class="col-xs-12">
+
+										<div class="table-responsive">
+											<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+											<!-- <form action="{:url('cate/sort')}" method="post"> -->
+												<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+												<thead>
+														<!-- <th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" style="width: 157px;" aria-label="Domain: activate to sort column ascending">ID</th>
+														<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" style="width: 118px;" aria-label="Price: activate to sort column ascending">订单时间</th>
+														<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" style="width: 118px;" aria-label="Price: activate to sort column ascending">订单用户ID</th>
+														<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" style="width: 118px;" aria-label="Price: activate to sort column ascending">收货地址</th>
+														<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" style="width: 118px;" aria-label="Price: activate to sort column ascending">评论时间</th>
+														<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" style="width: 132px;" aria-label="Clicks: activate to sort column ascending">操作</th>
+														
+														</tr> -->
+												</thead>
+
+											<tbody role="alert" aria-live="polite" aria-relevant="all">
+													<tr class="odd">
+														<td class="">
+															订单ID
+														</td>
+														<td class=" ">{$order_get_toArray.order_id}</td>
+													</tr>
+													<tr class="odd">
+														<td class="">
+															订单时间
+														</td>
+														<td class=" ">{$order_get_toArray.order_time|date="Y-m-d H:i:s",###}</td>
+													</tr>
+													{volist name="$order_get_toArray.ordergoods" id="vo1"}
+													<tr class="odd">
+														<td class="">
+															商品信息
+														</td>
+														<td class=" ">
+															商品ID:{$vo1.goods.goods_id}</br>
+															商品名称:{$vo1.goods.goods_name}
+															{volist name="vo1.goods.keywords" id="vo2"}
+															{$vo2.keywords_name}
+															{/volist}								
+															</br>
+															购买价格:{$vo1.goods.goods_after_price}</br>
+															购买数量:{$vo1.goods_num}</br>
+															<img src="{$vo1.goods.goods_thumb}" width="100"></br>
+															用户评论：{volist name="$order_get_toArray.commentgoods" id="vo3"}
+															{if condition="$vo1.goods.goods_id eq $vo3.goods_id"}
+															{$vo3.comment_contents}</br>
+															用户评分：{$vo3.comment_score}
+															{/if}
+															{/volist}
+															</br>
+
+														</td>
+														
+													</tr>
+													{/volist}
+													<tr class="odd">
+														<td class="">
+															用户信息
+														</td>
+														<td class=" ">
+															用户ID:{$order_get_toArray.user.user_id}</br>
+															用户邮箱:{$order_get_toArray.user.user_email}</br>
+															用户电话:{$order_get_toArray.user.user_phone}</br>
+														</td>
+
+													</tr>
+													<tr class="odd">
+														<td class="">
+															收货地址
+														</td>
+														<td class=" ">
+															收货人:{$order_get_toArray.address.user_address_name}</br>
+															收货电话:{$order_get_toArray.address.user_address_phone}</br>
+															收货地址:{$order_get_toArray.address.province.province_name}
+															{$order_get_toArray.address.city.city_name}
+															{$order_get_toArray.address.district.district_name}
+															{$order_get_toArray.address.user_address_detail}</br>
+														</td>
+
+													</tr>
+													<tr class="odd">
+														<td class="">
+															订单状态
+														</td>
+														<td class=" " id="order_status">
+															{switch name="$order_get_toArray.order_status"}
+															{case value="-1"}
+															订单失效
+															{/case}
+															{case value="0"}
+															已完成
+															{/case}
+															{case value="1"}
+															待付款
+															{/case}
+															{case value="2"}
+															待发货
+															{/case}
+															{case value="3"}
+															待收货
+															{/case}
+															{/switch}
+														</td>
+
+													</tr>
+
+													<tr>
+														<td>更改状态</td>
+														<td>
+															<button class="btn btn-inverse" onclick="javascript:if(confirm('确认修改状态？')) changeStatus('-1','{$order_get_toArray.order_id}')">已失效 </button>
+															<button class="btn btn-success" onclick="javascript:if(confirm('确认修改状态？')) changeStatus('0','{$order_get_toArray.order_id}')">已完成 </button>
+															<button class="btn btn-warning" onclick="javascript:if(confirm('确认修改状态？')) changeStatus('1','{$order_get_toArray.order_id}')">待付款</button>
+															<button class="btn btn-danger" onclick="javascript:if(confirm('确认修改状态？')) changeStatus('2','{$order_get_toArray.order_id}')">待发货</button>
+															<button class="btn btn-primary" onclick="javascript:if(confirm('确认修改状态？')) changeStatus('3','{$order_get_toArray.order_id}')">待收货</button>
+														</td>
+													</tr>
+													<tr class="odd">
+														<td class="">
+															评论时间
+														</td>
+														<td class=" ">
+															评论内容:{$order_get_toArray.comment_time|date="Y-m-d H:i:s",###}
+														</td>
+
+													</tr>
+											
+										
+												</tbody>
+											</table>
+											<!-- </form> -->
+											
+										</div>
+									</div>
+								</div>
+
+								
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div>
+				</div><!-- /.main-content -->
+
+			</div><!-- /.main-container-inner -->
+
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script src='__ADMIN__/assets/js/jquery-2.0.3.min.js'>
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='__ADMIN__/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='__ADMIN__/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		<script src="__ADMIN__/assets/js/bootstrap.min.js"></script>
+		<script src="__ADMIN__/assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="__ADMIN__/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+		<script src="__ADMIN__/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="__ADMIN__/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="__ADMIN__/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="__ADMIN__/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="__ADMIN__/assets/js/jquery.sparkline.min.js"></script>
+		<script src="__ADMIN__/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="__ADMIN__/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="__ADMIN__/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="__ADMIN__/assets/js/ace-elements.min.js"></script>
+		<script src="__ADMIN__/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+
+	</body>
+	<script type="text/javascript">
+		function changeStatus(order_status,order_id){
+			$.ajax({
+				type:"post",
+				data:{order_status:order_status,order_id,order_id},
+				url:"{:url('changeStatus')}",
+				success:function(data){
+					if(data=="-2"){
+						alert('修改状态失败！');
+					}
+					else{
+						$("#order_status").html(data);
+					}
+				}
+			});
+		}
+	</script>
+</html>
+

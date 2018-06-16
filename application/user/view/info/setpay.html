@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+		<title>支付密码</title>
+
+		<link href="__INDEX__/assets/css/admin.css" rel="stylesheet" type="text/css">
+		<link href="__INDEX__/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+
+		<link href="__INDEX__/css/personal.css" rel="stylesheet" type="text/css">
+		<link href="__INDEX__/css/stepstyle.css" rel="stylesheet" type="text/css">
+
+		<script type="text/javascript" src="__INDEX__/js/jquery-1.7.2.min.js"></script>
+		<script src="__INDEX__/assets/js/amazeui.js"></script>
+
+	</head>
+
+	<body>
+		<!--头 -->
+		<header>
+			<article>
+				{include file="../application/index\view\public\top.html"}
+			</article>
+		</header>
+            <div class="nav-table">
+					   <div class="long-title"><span class="all-goods">全部分类</span></div>
+					   <div class="nav-cont">
+							<ul>
+								<li class="index"><a href="#">首页</a></li>
+                                <li class="qc"><a href="#">闪购</a></li>
+                                <li class="qc"><a href="#">限时抢</a></li>
+                                <li class="qc"><a href="#">团购</a></li>
+                                <li class="qc last"><a href="#">大包装</a></li>
+							</ul>
+						    <div class="nav-extra">
+						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
+						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
+						    </div>
+						</div>
+			</div>
+			<b class="line"></b>
+		<div class="center">
+			<div class="col-main">
+				<div class="main-wrap">
+
+					<div class="am-cf am-padding">
+						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">支付密码</strong> / <small>Set&nbsp;Pay&nbsp;Password</small></div>
+					</div>
+					<hr/>
+					<!--进度条-->
+					<div class="m-progress">
+						<div class="m-progress-list">
+							<span class="step-1 step">
+                                <em class="u-progress-stage-bg"></em>
+                                <i class="u-stage-icon-inner">1<em class="bg"></em></i>
+                                <p class="stage-name">设置支付密码</p>
+                            </span>
+							<span class="step-2 step">
+                                <em class="u-progress-stage-bg"></em>
+                                <i class="u-stage-icon-inner">2<em class="bg"></em></i>
+                                <p class="stage-name">完成</p>
+                            </span>
+							<span class="u-progress-placeholder"></span>
+						</div>
+						<div class="u-progress-bar total-steps-2">
+							<div class="u-progress-bar-inner"></div>
+						</div>
+					</div>
+					<form class="am-form am-form-horizontal" action="{:url('user/info/setPayHanddle')}" method="post">
+						<div class="am-form-group bind">
+							<label for="user-phone" class="am-form-label">验证手机</label>
+							<div class="am-form-content">
+								<span id="user-phone">{$user_information_find.user_phone}</span>
+							</div>
+						</div>
+						<div class="am-form-group code">
+							<label for="user-code" class="am-form-label">验证码</label>
+							<div class="am-form-content">
+								<input type="tel" id="user-code" placeholder="短信验证码" readonly="readonly" name="{$user_information_find.user_phone}">
+							</div>
+							<a class="btn" href="javascript:void(0);" onclick="sendMobileCode();" id="sendMobileCode">
+								<div class="am-btn am-btn-danger">点击获取验证码</div>
+							</a>
+						</div>
+						<div class="am-form-group">
+							<label for="user_pay_password" class="am-form-label">支付密码</label>
+							<div class="am-form-content">
+								<input type="password" id="user_pay_password" placeholder="6位数字" name="user_pay_password">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="user_confirm_password" class="am-form-label">确认密码</label>
+							<div class="am-form-content">
+								<input type="password" id="user_confirm_password" placeholder="请再次输入上面的密码">
+							</div>
+						</div>
+						<div class="info-btn">
+						<input type="submit" name="" value="保存修改" class="am-btn am-btn-danger">
+						</div>
+
+					</form>
+
+				</div>
+				<!--底部-->
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="#">恒望科技</a>
+							<b>|</b>
+							<a href="#">商城首页</a>
+							<b>|</b>
+							<a href="#">支付宝</a>
+							<b>|</b>
+							<a href="#">物流</a>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="#">关于恒望</a>
+							<a href="#">合作伙伴</a>
+							<a href="#">联系我们</a>
+							<a href="#">网站地图</a>
+							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- aside -->
+			{include file="public/aside"}
+			<!-- /aside -->
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		function sendMobileCode(){
+			var phone = $("#user-phone").html();
+			$.ajax({
+				type:"post",
+				data:{num:phone},
+				url:"{:url('user/info/sendMessage')}",
+				success:function(data){
+
+				}
+			});
+			curtime = 20;
+			$("#sendMobileCode").css('pointerEvents','none');//禁止点击事件
+			$("#sendMobileCode div").html('请在'+curtime+'秒后再次获取');
+			$("#user-code").removeAttr('readonly');
+			intval = setInterval(funcName, 1000);//启动一个计时器
+		}
+		function funcName(){
+			if (curtime==0) {
+				clearInterval(intval);//关闭计时器
+				$("#sendMobileCode").css('pointerEvents','auto');//恢复点击事件
+				$("#sendMobileCode div").html('点击获取验证码');
+			}
+			else{
+				curtime--;
+				$("#sendMobileCode div").html('请在'+curtime+'秒后再次获取');
+			}
+		}
+	</script>
+	<script src="__ADMIN__/validform/validform.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var demo = $(".am-form-horizontal").Validform({
+				tiptype:4, 
+			});
+			demo.addRule([
+				{
+					ele:"#user-code",
+					datatype:"s6-6",
+					nullmsg:"请输入验证码",
+					errormsg:"验证码位数为6位",
+					sucmsg:"验证码正确",
+					ajaxurl:"{:url('user/info/checkCode')}",
+				},
+				{
+					ele:"#user_pay_password",
+					datatype:"s6-10",
+					nullmsg:"请输入密码！",
+					errormsg:"密码长度为6到10位",
+					sucmsg:"密码符合要求",
+					ajaxurl:"{:url('user/info/checkPassword')}",
+				},
+				{
+					ele:"#user_confirm_password",
+					datatype:"s6-10",
+					nullmsg:"请再次输入密码！",
+					errormsg:"两次密码输入不一致",
+					sucmsg:"两次密码输入一致",
+					recheck:"user_pay_password",
+				}
+			])
+		})
+	</script>
+
+</html>

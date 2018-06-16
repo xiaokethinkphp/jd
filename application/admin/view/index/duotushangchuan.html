@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- <script src="jquery-1.12.0.min.js"></script> -->
+	<link rel="stylesheet" href="__ADMIN__/jfu/css/jquery.fileupload.css">
+	<link rel="stylesheet" href="__ADMIN__/jfu/css/jquery.fileupload-ui.css">
+	<link href="__ADMIN__/assets/css/bootstrap.min.css" rel="stylesheet" />
+	<script src='__ADMIN__/assets/js/jquery-2.0.3.min.js'></script>
+    <script src="__ADMIN__/jfu/js/vendor/jquery.ui.widget.js"></script> 
+    <script src="__ADMIN__/jfu/js/jquery.iframe-transport.js"></script>
+    <script src="__ADMIN__/jfu/js/jquery.fileupload.js"></script>
+    <!-- <script src="__ADMIN__/jfu/js/cors/jquery.xdr-transport.js"></script> -->
+</head>
+<body>
+<div class="form-group">
+	<div class="col-xs-4">
+		<div class="progress">
+			<div id="thumb_progress" class="progress-bar" style="width:0%;"></div>
+		</div>
+		<span id="thumb_upload" class="btn btn-primary fileinput-button">  
+			<span>上传</span>
+			<input id="fileupload" placeholder="" class="" type="file" name="fileupload" multiple="">
+		</span> 
+		<div class="preview" style="margin-top:20px;"></div>
+	</div>
+</div>
+</body>  
+</html>  
+<script type="text/javascript">
+$(function(){
+	$('#fileupload').fileupload({
+		url:'{:url("admin/index/duotuhanddle")}',
+		dataType: "json",   
+	    multipart:true,
+	    sequentialUploads: true,
+	    done:function(e,data){
+	    	$(".preview").append("<div style='margin-top:10px;'><img src="+data.result+" width='100'>");
+	    	$(".preview").append("<a class='thumb_cancle btn btn-warning' role='button' style=''>删除</a></div>");
+	    },
+	    progressall:function(e,data){
+	    	var progress = parseInt(data.loaded / data.total * 100, 10);  
+	        $("#thumb_progress").css("width", progress + "%");  
+	        $("#thumb_progress").html("上传总进度："+progress+"%"); 
+	    }
+	})
+})
+</script>
+<script type="text/javascript">
+	$(function(){
+		$(".preview").on("click",".thumb_cancle",function(){
+			 var index = $("a").index(this);
+			 var me = this;
+   			 $.ajax({
+   			 	data:{'index':index},
+   			 	type:"post",
+   			 	url:"{:url('admin/index/a')}",
+   			 	success:function(data){
+   			 		$(me).prev('div').css({display:"none"});
+   			 		$(me).css({display:"none"});
+   			 	}
+   			 })
+		})
+	})
+</script>

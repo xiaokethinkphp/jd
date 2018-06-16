@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+		<link rel="stylesheet" href="__INDEX__/assets/css/amazeui.min.css" />
+		<link href="__INDEX__/css/dlstyle.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="__INDEX__/layui/layui/css/layui.css">
+		<script src="__INDEX__/assets/js/jquery.min.js"></script>
+		<script src="__INDEX__/assets/js/amazeui.min.js"></script>
+
+	</head>
+
+	<body>
+
+		<div class="login-boxtitle">
+			<a href="home/demo.html"><img alt="" src="__INDEX__/images/logobig.png" /></a>
+		</div>
+
+		<div class="res-banner">
+			<div class="res-main">
+				<div class="login-banner-bg">
+					<span></span><img src="__INDEX__/images/big.jpg" />
+				</div>
+				<div class="login-box">
+
+					<div class="am-tabs" id="doc-my-tabs">
+						<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+							<li class="am-active"><a href="">邮箱注册</a></li>
+							<li><a href="">手机号注册</a></li>
+						</ul>
+
+						<div class="am-tabs-bd">
+							<div class="am-tab-panel am-active">
+								<form method="post" action="{:url('register/registerhanddle')}" id="emailform">
+									
+						   			<div class="user-email">
+										<label for="user_email"><i class="am-icon-envelope-o"></i></label>
+										<input type="text" name="user_email" id="user_email" placeholder="请输入邮箱账号">
+             						</div>
+             						<div style="height: 20px"></div>										
+	                 				<div class="user-pass">
+									    <label for="user_password"><i class="am-icon-lock"></i></label>
+									    <input type="password" name="user_password" id="user_password" placeholder="设置密码">
+					                </div>
+					                <div style="height: 20px"></div>										
+					                <div class="user-pass">
+									    <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
+									    <input type="password" name="" id="passwordRepeat" placeholder="确认密码">
+	                 				</div>	
+	                 				<div style="height: 20px"></div>
+	                 				<div>
+										<input id="reader-me1" name="" type="checkbox"> 点击表示您同意商城
+										<a href="javascript:void(0)" onclick="layui1()">《服务协议》</a>
+						  			</div>
+									<div class="am-cf">
+										<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+									</div>
+
+	                 			</form>
+             					
+							 	
+
+							</div>
+
+								<div class="am-tab-panel">
+									<form method="post" action="{:url('register/registerhanddle1')}" id="phoneform">
+                 						<div class="user-phone">
+								    		<label for="user_phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
+								    		<input type="tel" name="user_phone" id="user_phone" placeholder="请输入手机号">
+                 						</div>	
+                 						<div style="height: 20px"></div>																		
+										<div class="verification">
+											<label for="code"><i class="am-icon-code-fork"></i></label>
+											<input type="tel" name="" id="code" placeholder="请输入验证码">
+											<a class="btn" href="javascript:void(0);" onclick="sendMobileCode();" id="sendMobileCode">
+												<span id="dyMobileButton">获取</span>
+											</a>
+										</div>
+										<div style="height: 20px"></div>
+                 						<div class="user-pass">
+								    		<label for="user_password1"><i class="am-icon-lock"></i></label>
+								    		<input type="password" name="user_password1" id="user_password1" placeholder="设置密码">
+                 						</div>
+                 						<div style="height: 20px"></div>										
+                 						<div class="user-pass">
+								    		<label for="passwordRepeat1"><i class="am-icon-lock"></i></label>
+								    		<input type="password" name="" id="passwordRepeat1" placeholder="确认密码">
+                 						</div>
+                 						<div class="am-cf">
+											<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+										</div>	
+									</form>
+									<div class="login-links">
+										<label for="reader-me">
+											<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
+										</label>
+							  		</div>
+									
+								
+									<hr>
+								</div>
+
+							<script>
+								$(function() {
+								    $('#doc-my-tabs').tabs();
+								  })
+							</script>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
+			<div class="footer ">
+				<div class="footer-hd ">
+					<p>
+						<a href="# ">恒望科技</a>
+						<b>|</b>
+						<a href="# ">商城首页</a>
+						<b>|</b>
+						<a href="# ">支付宝</a>
+						<b>|</b>
+						<a href="# ">物流</a>
+					</p>
+				</div>
+				<div class="footer-bd ">
+					<p>
+						<a href="# ">关于恒望</a>
+						<a href="# ">合作伙伴</a>
+						<a href="# ">联系我们</a>
+						<a href="# ">网站地图</a>
+						<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<!-- <script src='__ADMIN__/assets/js/jquery-2.0.3.min.js'></script> -->
+	<script src="__ADMIN__/validform/validform.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// var demo = $("#emailform").Validform({
+			// 	tiptype:4, 
+			// });
+			// demo.addRule([
+			// 	{
+			// 		ele:"#user_email",
+			// 		datatype:"e",
+			// 		nullmsg:"请输入邮箱地址",
+			// 		errormsg:"这不是一个有效的邮箱地址",
+			// 		sucmsg:"邮箱地址可以使用",
+			// 		ajaxurl:'{:url("user/register/checkusername")}'
+			// 	},
+			// 	{
+			// 		ele:"#user_password",
+			// 		datatype:"s6-10",
+			// 		nullmsg:"请输入密码！",
+			// 		errormsg:"密码长度为6到10位",
+			// 		sucmsg:"密码符合要求",
+			// 	},
+			// 	{
+			// 		ele:"#passwordRepeat",
+			// 		datatype:"s6-10",
+			// 		nullmsg:"请再次输入密码！",
+			// 		errormsg:"两次密码输入不一致",
+			// 		sucmsg:"密码符合要求",
+			// 		recheck:"user_password"
+			// 	},
+				// {
+				// 	ele:"#reader-me1",
+				// 	datatype:"*",
+				// 	nullmsg:"请同意条款",
+				// 	sucmsg:"您已同意条款",
+				// }
+				
+			// ])
+			var demo1 = $("#phoneform").Validform({
+				tiptype:3, 
+			});
+			demo1.addRule([
+				{
+					ele:"#user_phone",
+					datatype:"*",
+					nullmsg:"请输入手机号",
+					errormsg:"这不是一个有效的手机号",
+					sucmsg:"手机号可以使用",
+					ajaxurl:'{:url("user/register/checkusername1")}'
+				},
+				{
+					ele:"#user_password1",
+					datatype:"s6-10",
+					nullmsg:"请输入密码！",
+					errormsg:"密码长度为6到10位",
+					sucmsg:"密码符合要求",
+				},
+				{
+					ele:"#passwordRepeat1",
+					datatype:"s6-10",
+					nullmsg:"请再次输入密码！",
+					errormsg:"两次密码输入不一致",
+					sucmsg:"密码符合要求",
+					recheck:"user_password1"
+				},
+				{
+					ele:"#code",
+					datatype:"*",
+					nullmsg:"请输入验证码",
+					sucmsg:"验证码正确",
+					ajaxurl:'{:url("user/register/checkmobilenum")}'
+				}
+				
+			])
+		})
+	</script>
+	<script src="__INDEX__/layui/layui/layui.js"></script>
+	<script>
+	function layui1(){
+		layui.use('layer', function(){
+	  	var layer = layui.layer;
+	  
+		layer.open({
+			title:'欢迎阅读服务内容',
+	  		type: 1, 
+	  		content: '京东用户注册协议本协议是您与京东网站（简称;本站;，网址：www.jd.com）所有者（以下简称为;京东;）之间就京东网站服务等相关事宜所订立的契约，请您仔细阅读本注册协议，您点击;同意并继续;按钮后，本协议即构成对双方有约束力的法律文件。<h1>第1条 本站服务条款的确认和接纳</h1><h2>1.1本站的各项电子服务的所有权和运作权归京东所有。用户同意所有注册协议条款并完成注册程序，才能成为本站的正式用户。用户确认：本协议条款是处理双方权利义务的契约，始终有效，法律另有强制性规定或双方另有特别约定的，依其规定。</h2><h2>1.2用户点击同意本协议的，即视为用户确认自己具有享受本站服务、下单购物等相应的权利能力和行为能力，能够独立承担法律责任。</h2><h2>1.3如果您在18周岁以下，您只能在父母或监护人的监护参与下才能使用本站。</h2><h2>1.4京东保留在中华人民共和国大陆地区法施行之法律允许的范围内独自决定拒绝服务、关闭用户账户、清除或编辑内容或取消订单的权利。</h2>',
+	  		closeBtn:1,
+	  		area:'800px'
+			});
+		});
+	} 
+	       
+	</script> 
+	<script type="text/javascript">
+		function sendMobileCode(){
+			var mobilenum = $("#user_phone").val();
+			$.ajax({
+				data:{num:mobilenum},
+				type:"post",
+				url:"{:url('user/register/sendMobileCode')}",
+				success:function(data){
+					alert(data);
+				}
+			});
+		}
+	</script>
+</html>

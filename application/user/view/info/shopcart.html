@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>购物车页面</title>
+
+		<link href="__INDEX__/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+		<link href="__INDEX__/basic/css/demo.css" rel="stylesheet" type="text/css" />
+		<link href="__INDEX__/css/cartstyle.css" rel="stylesheet" type="text/css" />
+		<link href="__INDEX__/css/optstyle.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript" src="__INDEX__/js/jquery.js"></script>
+
+	</head>
+
+	<body>
+
+		<!--顶部导航条 -->
+		{include file="../application/index\view\public\top.html"}
+
+			<!--购物车 -->
+			<div class="concent">
+				<div id="cartTable">
+					<div class="cart-table-th">
+						<div class="wp">
+							<div class="th th-chk">
+								<div id="J_SelectAll1" class="select-all J_SelectAll">
+
+								</div>
+							</div>
+							<div class="th th-item" style="width: 290px;">
+								<div class="td-inner" >商品信息</div>
+							</div>
+							<div class="th th-price">
+								<div class="td-inner">单价</div>
+							</div>
+							<div class="th th-amount">
+								<div class="td-inner">数量</div>
+							</div>
+							<div class="th th-sum">
+								<div class="td-inner">金额</div>
+							</div>
+							<div class="th th-op">
+								<div class="td-inner">操作</div>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+
+					<tr class="item-list">
+						<div class="bundle  bundle-last ">
+							<div class="clear"></div>
+							<div class="bundle-main">
+							{volist name="goods_list" id="vo"}
+								<ul class="item-content clearfix">
+								<input type="hidden" name="goods_id" value="{$vo.goods_id}">
+									<li class="td td-chk">
+										<div class="cart-checkbox ">
+											<input class="check" id="J_CheckBox_170037950254" name="items[]" value="170037950254" type="checkbox" onclick="setprice(this)">
+											<label for="J_CheckBox_170037950254"></label>
+										</div>
+									</li>
+
+									<li class="td td-item">
+										<div class="item-pic">
+											<a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12">
+												<img src="{$vo.goods_thumb}" class="itempic J_ItemImg" width="80"></a>
+										</div>
+										<div class="item-info">
+											<div class="item-basic-info">
+												<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">
+													{$vo.goods_name}
+													{volist name='$vo.keywords' id="vo1"}
+														{$vo1.keywords_name}
+													{/volist}
+												</a>
+											</div>
+										</div>
+									</li>
+
+									<li class="td td-price">
+										<div class="item-price price-promo-promo">
+											<div class="price-content">
+											{if condition="$vo.goods_after_price lt $vo.goods_price"}
+												<div class="price-line">
+													<em class="price-original">{$vo.goods_price}</em>
+												</div>
+												<div class="price-line">
+													<em class="J_Price price-now" tabindex="0">{$vo.goods_after_price}</em>
+												</div>
+											{else/ if}
+												<div class="price-line">
+													<em class="J_Price price-now" tabindex="0">{$vo.goods_after_price}</em>
+												</div>
+											{/if}
+											</div>
+										</div>
+									</li>
+									<li class="td td-amount">
+										<div class="amount-wrapper ">
+											<div class="item-amount ">
+												<div class="sl">
+													<input class="min am-btn" name="" type="button" value="-" onclick="desGoodsNum(this)" />
+													<input class="text_box" name="" type="text" value="{$vo.goods_num}" style="width:30px;" />
+													<input class="add am-btn" name="" type="button" value="+" onclick="incGoodsNum(this)"/>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="td td-sum">
+										<div class="td-inner">
+											<em tabindex="0" class="J_ItemSum number">{$vo.goods_num*$vo.goods_after_price}</em>
+										</div>
+									</li>
+									<li class="td td-op">
+										<div class="td-inner">
+											<a title="移入收藏夹" class="btn-fav" href="#">移入收藏夹</a>
+											<a href="javascript:;" data-point-url="#" class="delete">删除</a>
+										</div>
+									</li>
+								</ul>
+								{/volist}
+							</div>
+						</div>
+					</tr>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+
+				<div class="float-bar-wrapper">
+					<div id="J_SelectAll2" class="select-all J_SelectAll">
+						<div class="cart-checkbox">
+							<input class="check-all check" id="J_SelectAllCbx2" name="select-all" value="true" type="checkbox">
+							<label for="J_SelectAllCbx2"></label>
+						</div>
+						<span>全选</span>
+					</div>
+					<div class="operations">
+						<a href="#" hidefocus="true" class="deleteAll">删除</a>
+						<a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a>
+					</div>
+					<div class="float-bar-right">
+						<div class="amount-sum">
+							<span class="txt">已选商品</span>
+							<em id="J_SelectedItemsCount">0</em><span class="txt">件</span>
+							<div class="arrow-box">
+								<span class="selected-items-arrow"></span>
+								<span class="arrow"></span>
+							</div>
+						</div>
+						<div class="price-sum">
+							<span class="txt">合计:</span>
+							<strong class="price">¥<em id="J_Total">0.00</em></strong>
+						</div>
+						<!-- <div class="btn-area"> -->
+							<button id="J_Go" class="btn-area submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算" onclick="gopay()">支付</button>
+						<!-- </div> -->
+					</div>
+
+				</div>
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="#">恒望科技</a>
+							<b>|</b>
+							<a href="#">商城首页</a>
+							<b>|</b>
+							<a href="#">支付宝</a>
+							<b>|</b>
+							<a href="#">物流</a>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="#">关于恒望</a>
+							<a href="#">合作伙伴</a>
+							<a href="#">联系我们</a>
+							<a href="#">网站地图</a>
+							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+						</p>
+					</div>
+				</div>
+
+			</div>
+			<!--操作页面-->
+
+			<div class="theme-popover-mask"></div>
+
+		<!--引导 -->
+		<div class="navCir">
+			<li><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
+			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
+			<li class="active"><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
+			<li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>					
+		</div>
+	</body>
+	<script type="text/javascript">
+		function desGoodsNum(obj){
+			var goods_id = $(obj).parent().parent().parent().parent().parent().find('input').val();
+			var num = $(obj).next('input').val();
+			var goods_after_price = $(obj).parent().parent().parent().parent().parent().find(".price-now").html();
+			var goods_total_price = (parseInt(num)-1)*goods_after_price;
+			$.ajax({
+				type:'post',
+				data:{goods_id:goods_id,num:num},
+				url:"{:url('user/info/desGoodsNum')}",
+				//async:false,
+				success:function(data){
+					$(obj).parent().parent().parent().parent().parent().find('li:eq(4) div em').html(goods_total_price);
+				}	
+			})
+		}
+	</script>
+	<script type="text/javascript">
+		function incGoodsNum(obj){
+			var goods_id = $(obj).parent().parent().parent().parent().parent().find('input').val();
+			var num = $(obj).prev('input').val();
+			var goods_after_price = $(obj).parent().parent().parent().parent().parent().find(".price-now").html();
+			var goods_total_price = (parseInt(num)+1)*goods_after_price;
+			// var total_price = $("#J_Total").html();
+			$.ajax({
+				type:'post',
+				data:{goods_id:goods_id,num:num},
+				url:"{:url('user/info/incGoodsNum')}",
+				success:function(data){
+					// $("#J_Total").html(parseInt(total_price)+parseInt(goods_after_price));
+					$(obj).parent().parent().parent().parent().parent().find('li:eq(4) div em').html(goods_total_price);
+				}	
+			})
+		}
+	</script>
+	<script type="text/javascript">
+		function setprice(obj){
+			var total_num = $("#J_SelectedItemsCount").html();
+			var total_price = $("#J_Total").html();
+			var goods_after_price = $(obj).parent().parent().parent().find(".price-now").html();
+			var goods_num = $(obj).parent().parent().parent().find(".text_box").val();
+			var totals = goods_after_price*goods_num;
+			if ($(obj).is(':checked')) {
+				$("#J_SelectedItemsCount").html(parseInt(total_num)+1);
+				$("#J_Total").html(parseInt(total_price)+totals);
+			}
+			else{
+				$("#J_SelectedItemsCount").html(total_num-1);
+				$("#J_Total").html(total_price-totals);
+			}
+		}
+	</script>
+	
+	<script type="text/javascript">
+		function gopay(){
+			var obj = $(".bundle-main ul");
+			var json=[];
+			$(obj).each(function(k,v){
+				var checkbox = $(this).find('li:eq(0) div').find('input');
+				if(checkbox.is(":checked")){
+					var goods_id = $(this).find('input:eq(0)').val();
+					var goods_num = $(this).find('li:eq(3)').find(".text_box").val();
+					var add = {"goods_id":goods_id,"goods_num":goods_num};
+					json.push(add);
+				}
+				
+			});
+			var json1 = JSON.stringify(json);
+			$.ajax({
+				type:"post",
+				data:{data:json1},
+				url:"{:url('user/info/json')}",
+				success:function(data){
+					window.location.href="{:url('user/info/pay')}";
+				}
+			})
+
+		}
+	</script>
+
+</html>

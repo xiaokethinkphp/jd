@@ -1,0 +1,74 @@
+无限级分类
+
+
+								|
+			|-------------------|--------------|
+			家电(1)				手机(2)		电脑(3)
+			|									|
+	|-------|----------|						|
+	电视(4)	空调(5)  洗衣机(6)					整机(7)	
+	|
+|---|---|
+液晶电视		
+
+
+方式1、父类节点存放子类节点的信息,cid（children id）家电的cid是（4,5,6）。
+方式2、子类节点存放父类节点的信息,pid(parent id)电视的pid是(1)。
+//商城采用的方式2。
+二维数组：
+	家电
+	--电视
+	----液晶电视
+	--空调
+	--洗衣机
+	手机
+	电脑
+	--整机
+多维数组：php.ini  [xdebug] xdebug.var_display_max_depth = -1
+	家电:{
+		id=>1,
+		name=>'jidian',
+		pid=>0,
+		children=>
+				电视:{
+					id
+					name
+					pid
+					children=>液晶电视:{
+									id,
+									name,
+									pid,
+									children=>
+										}
+					}
+				空调:{
+					id,
+					name,
+					pid,
+					children=>
+					}
+				洗衣机:{
+					id,
+					name,
+					pid,
+					children=>
+					}
+	手机:{
+		id,
+		name,
+		pid,
+		children=>
+		}
+	电脑:{
+		id,
+		name,
+		pid,
+		children=>
+				整机:{
+					id,
+					name,
+					pid,
+					children=>
+					}
+		}
+

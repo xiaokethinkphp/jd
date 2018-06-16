@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" ></script>
+</head>
+<body>
+	<div id="selelist">
+
+		<input type="text" id="search-text" name="searchValue" value="" maxlength="200">
+
+	</div>
+</body>
+<script src='__ADMIN__/assets/js/jquery-2.0.3.min.js'></script>
+<script type="text/javascript">
+$(function(){
+	var $html = $("<ul class='autocomplete'></ul>").hide().insertAfter("#search-text");
+	//定义一个html标签
+	$('#search-text').keyup(function(){
+		var val = $('#search-text').val();
+        $.ajax({
+        	url:'{:url("index/index2")}',//后台地址
+        	type:"post",
+        	data:{'val':val},//参数 把文本框的值传到后台
+        	dataType:'json',
+        	success: function(data){
+         		if(data.length){
+         			$html.empty();
+         			$.each(data,function(index,tem){
+         				var text=$('#search-text').val();
+         				$("<li></li>").text(tem.keywords_name).appendTo($html)
+         				.mouseover(function(){
+         					$(this).css("background","green");
+         					})
+         				.mouseout(function(){
+         					$(this).css("background","yellow");
+         					})
+         				.click(function(){
+         					$("#search-text").val(tem.keywords_name);
+         					$html.hide();
+         					});
+         				})
+         			$html.show();
+     			}
+     		}
+     	})
+	});
+})
+
+</script>
+</html>

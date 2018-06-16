@@ -1,0 +1,15 @@
+商品数据库：
+//商品id：goods_id
+?商品名称:goods_name(多表)//先一个
+//商品缩略图:goods_thumb
+商品图片:goods_images(一对多)
+?商品价格:goods_price//先没有特价
+//商品状态:goods_status//0没有上架,1已上架
+商品参数:goods_parameter(一对多)
+商品细节:goods_details(多张图片)
+商品类型:goods_type(多表)
+?商品销量:goods_sales？
+商品库存:goods_inventory
+商品评论:goods_remark(多表)//
+商品所属分类:goods_pid
+
