@@ -64,7 +64,7 @@
 									<li>
 									<a href="{:url('goods/introduction',array('goods_id'=>$vo.goods_id))}">
 										<div class="i-pic limit">
-											<img src="__INDEX__/images/imgsearch1.jpg" />											
+											<img src="{$vo.goods_thumb}" />											
 											<p class="title fl">{$vo.goods_name}
 											{volist name='$vo.keywords' id="vo1"}
 											{$vo1.keywords_name}

@@ -259,12 +259,13 @@ return [
         'reset'    => true
     ],
     //邮箱设置
-    'MAIL_ADDRESS'=>'', // 邮箱地址
-    'MAIL_SMTP'=>'', // 邮箱SMTP服务器
-    'MAIL_LOGINNAME'=>'', // 邮箱登录帐号
-    'MAIL_PASSWORD'=>'', // 邮箱密码
-    
-    //短信验证码设置
+    'MAIL_ADDRESS'=>'466561741@qq.com', // 邮箱地址
+    'MAIL_SMTP'=>'smtp.qq.com', // 邮箱SMTP服务器
+    'MAIL_LOGINNAME'=>'466561741@qq.com', // 邮箱登录帐号
+    'MAIL_PASSWORD'=>'gpaaxpjabctkbija', // 邮箱密码
+    // equnxsdbwxywbgcb
+    // gpaaxpjabctkbija
+    //短信验证码设置  
     'appkey' => '',
     'secretKey' =>  ''
     ];

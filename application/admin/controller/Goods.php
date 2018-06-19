@@ -1,14 +1,14 @@
-<?php
+<?php  
 namespace app\admin\controller;
 /**
-*
+* 
 */
 if(!isset($_SESSION['imgupload'])){
 	session_start();
 }
 class Goods extends Common
 {
-
+	
 	public function add(){
 		//添加商品界面
 		if (cookie('imgupload')) {
@@ -100,7 +100,7 @@ class Goods extends Common
 				if($value!='0'){
 					$goods->img()->save(['url'=>$value]);
 				}
-
+				
 			}
 			unset($_SESSION['imgupload']);
 			$this->success('商品添加成功','goods/goodslist');
@@ -110,7 +110,7 @@ class Goods extends Common
 			unset($_SESSION['imgupload']);
 			$this->error('商品添加失败','goods/goodslist');
 		}
-
+		
 	}
 
 	public function canclethumb(){
@@ -154,7 +154,7 @@ class Goods extends Common
 		// $this->assign('goods_info',$goods_info);
 
 
-
+		
 		$cate_model = model('Cate');
 		$cate_select = db('cate')->select();
 		$cate_list1 = $cate_model->getChildren($cate_select);
@@ -191,7 +191,7 @@ class Goods extends Common
 		$show = $page_class->fpage();//模板显示的内容
 		$limit = $page_class->setlimit();//获取limit信息   '3,2'
 		$limit = explode(',',$limit);//['3','2']
-		$list = array_slice($goods_info,$limit[0],$limit[1]);
+		$list = array_slice($goods_info,$limit[0],$limit[1]);//123456
 		$this->assign('show',$show);
 		$this->assign('goods_info',$list);
 		return view();
@@ -282,7 +282,7 @@ class Goods extends Common
 				$this->error('促销价格不能大于商品价格');
 			}
 		}
-
+		
 		$validate = validate('Goods');
 		if (!$validate->check($post)) {
 			$this->error($validate->getError(),'goods/goodslist');
@@ -366,7 +366,7 @@ class Goods extends Common
 		else{
 			$this->error('商品删除失败','goods/goodslist');
 		}
-
+		
 	}
 	 public function keywordsaddhanddle1(){
     	$post = request()->post();
@@ -378,7 +378,7 @@ class Goods extends Common
     	$goods = $goods_model->get($goods_id);
 		// 增加关联的中间表数据
 		$goods->keywords()->attach($keywords_id);
-
+    	
     }
 
 	public function keywordsajax(){
@@ -535,7 +535,7 @@ class Goods extends Common
 		}
 		$this->redirect('goods/goodslist');
     }
-
+   
 
 }
 ?>

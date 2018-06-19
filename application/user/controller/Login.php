@@ -46,10 +46,11 @@ class Login extends \think\Controller
 
 	public function active($user_email)
 	{
-		$title = 'JD商城';  //标题
+		$title = '极客宇宙商城';  //标题
 		$address = url('user/login/active1',array('user_email'=>$user_email));
 		$address = urldecode($address);
-		$content = '请访问以下地址进行激活http://localhost'.$address; dump($content); 
+		$content = '请访问以下地址进行激活http://localhost'.$address; 
+		dump($content); 
 		//邮件内容
 		SendMail($user_email,$title,$content); //直接调用发送即可
 	}
